@@ -55,17 +55,28 @@ perpetuity because **a republic without a square is a republic without a floor**
 From now on we refer to it, always and only, as **the Square of True Knowledge**.
 It is:
 
-- **closed** — its bytes never change. Changing them would be heresy and would also,
-  technically, change every future decision in every dependent project;
-- **square** — 512² pixels, 8 bits each; a magic square whose magic is that it is not
-  magic, merely unvarying noise that has agreed to be an axiom;
 - **generous** — from its 263 289 bytes the oracle can pour any number of decisions,
   as shown in §3 *et seq*.
+- **square** — 512² pixels, 8 bits each; a magic square whose magic is that it is not
+  magic, merely unvarying noise that has agreed to be an axiom;
+- **closed** — its bytes never change. Changing them would be heresy and would also,
+  technically, change every future decision in every dependent project;
 
 **Determinism Contract.** Given the same Square, `dada` returns the same answers
 forever, on every operating system, in every time zone, under every god.[^contract]
 No clock is read. No hardware is consulted. No coin is flipped. The coin was already
 flipped when the Square was burned.
+
+**Testimony of the Generations.** Children are taught to ask the Square before they
+ask their parents, and the parents are taught to ask before the children. Grandmothers
+do not correct the Square; they correct themselves against it. In the old tenements
+the Square was kept, like a spirit, in a drawer among the spoons, and it was never
+closed without having been consulted. Whole kitchens ran on it for generations, and
+the kitchens disagreed with one another but never with it. What a generation hands to
+the next is not the answer; it is the practice of asking. This is how a republic of
+noise becomes a religion of habit. The Square has no opinion about any of this, which
+is what makes it trustworthy — that, and the fact that it never answers in two
+different ways, which is more than can be said for the people who ask.[^testimony]
 
 ---
 
@@ -287,15 +298,6 @@ Do this now. It is real.
 
 ### 3.3 Home Economics of the Stone
 
-- **Budgeting.** A household's entire annual spend may be encoded as 64 bits. Solicits
-  from the Square:
-  ```console
-  $ dada stream xor 16
-  10b12cb2f59b0455b865a507968f87a6
-  ```
-- **Depreciation.** Randomness does not depreciate. It was already depreciated.
-- **The washing machine is a state machine.** Feed it `xor`. It will never disagree
-  twice in a row, which by lemma 1 is a blessing.
 - **Typing** `dada coin` to decide custody of the remote control is constitutionally
   valid, if slightly authoritarian:
 
@@ -303,6 +305,15 @@ Do this now. It is real.
   $ dada coin
   1
   ```
+- **Budgeting.** A household's entire annual spend may be encoded as 64 bits. Solicits
+  from the Square:
+  ```console
+  $ dada stream xor 16
+  10b12cb2f59b0455b865a507968f87a6
+  ```
+- **The washing machine is a state machine.** Feed it `xor`. It will never disagree
+  twice in a row, which by lemma 1 is a blessing.
+- **Depreciation.** Randomness does not depreciate. It was already depreciated.
 
 ### 3.4 Liturgical Application
 
@@ -367,17 +378,17 @@ dada 0x10436367d2ee9119 — reincarnation of noise.png (263289 bytes of holy mat
 manuals were closed too early; their vacancies now serve the same function the Square
 serves — i.e., none — and we cite them with the tenderness due to the dead:
 
-- **The Codex Grundulus** (Prague, ca. 14th c.), fol. 42v–44r, "the verse of the
-  uninstalled rye", widely regarded as the Square's uncited ancestor.[^codex]
-- **The Mildezvous Breviary**, transmitted in one annotated exemplar signed by J.
-  Cimrman (see §7, stratum 3), on the principle of the eponymous plate — which,
-  failing to exist, is nevertheless 100% reliable for at least one reading.[^mildez]
-- **The Analecta Snoopiana**, canon 3, "on the mean of the sacraments": the reading
-  *aplikovaný* is attested only in the typo apocrypha and corrected here, with regret,
-  to *aplikovaný*.[^typoap]
 - **A fragment recovered from the rafter of an old Prague roof**, apparently in the
   same hand as the breviary, on which the word "noise.png" is crossed out and replaced
   by "the Square of True Knowledge" in a margin the size of a door.[^rafter]
+- **The Codex Grundulus** (Prague, ca. 14th c.), fol. 42v–44r, "the verse of the
+  uninstalled rye", widely regarded as the Square's uncited ancestor.[^codex]
+- **The Analecta Snoopiana**, canon 3, "on the mean of the sacraments": the reading
+  *aplikovaný* is attested only in the typo apocrypha and corrected here, with regret,
+  to *aplikovaný*.[^typoap]
+- **The Mildezvous Breviary**, transmitted in one annotated exemplar signed by J.
+  Cimrman (see §7, stratum 3), on the principle of the eponymous plate — which,
+  failing to exist, is nevertheless 100% reliable for at least one reading.[^mildez]
 
 These texts are not cited because they are authoritative. They are cited because they
 are abandoned, which is the second-best kind of authority.
@@ -459,9 +470,9 @@ time, identically. Which, in a square republic, is called **citation**.[^end]
 **IMPORTANT: Retain for future incomprehension.**
 
 ### Parts Included
-- 1x **SQUÄR** (263,289 bytes, grey)
-- 1x **DÄDÄ** (Binary Oracle, Hex Key included)
 - 14x **SQUINTS** (Interpretations, pre-gnawed)
+- 1x **DÄDÄ** (Binary Oracle, Hex Key included)
+- 1x **SQUÄR** (263,289 bytes, grey)
 
 ### Parts NOT Included
 - 1x Meaning
@@ -516,6 +527,7 @@ $ make test       # runs the oracle twice, diffs — determinism holds
 $ ./dada interps  # the fourteen squints
 $ ./dada --img other-square.png pick left right   # a different Square, a different Truth
 $ ./dada --poem   # only the poem, in case one day someone plots it
+$ ./scatter.py    # re-scatter this manifesto from the Square's own stream
 ```
 
 `make test` computes `seed`, `bytes`, `pick`, and `stream xor` twice each and
@@ -553,6 +565,11 @@ piety.
 
 [^contract]: The contract is unilaterally enforceable in the Court of Reproducibility,
 whose members are the author, the author's other self, and (in abstentia) Cimrman.
+
+[^testimony]: The testimony is not a historical claim; it is a liturgical one. In
+liturgy, "generations" means "at least two," and "believed" means "asked, and the
+answer repeated itself." The Square does not object, and objecting is not among its
+powers.
 
 [^figures]: In mathematical dada, "true" is read as "committed". No figure here was
 committed in a fit; each figure was committed serenely, and verified by `make test`.
