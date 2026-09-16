@@ -527,7 +527,9 @@ DETERMINISM HOLDS — same stone, same world, forever.
 
 ## License
 
-MIT, with the entire weight of the Square on it. See `LICENSE`.
+Do What The Fuck You Want To Public License (WTFPL), with the entire weight
+of the Square on it. The Square itself remains under no license but its own,
+which is older than licensing and refuses to read. See `LICENSE`.
 
 ---
 
