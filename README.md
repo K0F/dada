@@ -10,6 +10,15 @@
 
 ## Abstract
 
+```
+███████
+█     █
+█  █  █
+█     █
+███████
+```
+<p align="center"><em>the initial O, a monstrance held up to the single true answer it contains</em></p>
+
 We announce a result so stubborn it cannot be believed and so repeatable it cannot
 be doubted: **chance is a legally binding quantity**. This repository commits, as its
 sole constitutional document, a single square of grey noise — hereinafter, with the
@@ -29,6 +38,15 @@ casually uninformative.[^kolmo]
 ---
 
 ## §1 The Square of True Knowledge
+
+```
+  ███  
+ █   █ 
+███████
+█     █
+█     █
+```
+<p align="center"><em>the initial A, from the illuminated folio of the Kitchen Republic</em></p>
 
 The foundation of this republic is a file. The file is `noise.png`, a 512 × 512 pixel,
 8-bit grayscale image of 263 289 bytes, and it is committed to this repository in
@@ -52,6 +70,15 @@ flipped when the Square was burned.
 ---
 
 ## §2 Mathematical Apparatus
+
+```
+███████
+█      
+███████
+      █
+███████
+```
+<p align="center"><em>the initial S, consonant of the serpent that swallows its own tail and calls it a stream</em></p>
 
 We do mathematics the dadaist way: with figures, conviction, and no mercy. All
 figures below are *true* in the sense that [they come from §4 commands applied to the
@@ -78,6 +105,37 @@ is providential. There is no /dev/urandom, because the Square has already answer
 Monte Carlo bets 263 289 bytes and wins by definition.[^monte] Kolmogorov complexity
 of the Square is 0, since the Square is already everything that is.[^kolmo]
 
+**The bookkeeping of the blessed.** The master seed is not conjured; it is *read off*.
+The FNV-1a murmur, applied to the Square in holy order <i>b</i><sub>0</sub> …,
+<i>b</i><sub>263288</sub>, follows the recurrence (all arithmetic mod 2<sup>64</sup>):
+
+> <i>h</i><sub>0</sub> = 0xcbf29ce484222325
+>
+> <i>h</i><sub>i</sub> = (<i>h</i><sub>i−1</sub> ⊕ <i>b</i><sub>i</sub>) · 0x100000001b3
+>
+> <i>seed</i> = <i>h</i><sub>263289</sub> = 0x10436367d2ee9119
+
+From the seed the liturgical mixer splitmix64 advances the geist <i>s</i>:
+
+> <i>z</i> = <i>s</i> + 0x9e3779b97f4a7c15
+>
+> <i>z</i> = (<i>z</i> ⊕ (<i>z</i> ≫ 30)) · 0xbf58476d1ce4e5b9
+>
+> <i>z</i> = (<i>z</i> ⊕ (<i>z</i> ≫ 27)) · 0x94d049bb133111eb
+>
+> hatch(<i>s</i>) = <i>z</i> ⊕ (<i>z</i> ≫ 31)
+
+Every verdict is then a single application of this liturgy:
+
+> coin = hatch<sub>0</sub>(<i>s</i>) mod 2
+>
+> roll = (hatch<sub>0</sub>(<i>s</i>) mod 6) + 1
+>
+> verdict = <i>args</i>[hatch<i><sub>k</sub></i>(<i>s</i>) mod <i>m</i>]
+
+No term of any of these equations is permitted to disagree with another; the Committee
+on Commitments has ruled that a divided equation is a divided god.[^equation]
+
 **The Fourteen Interpretations.** The Square does not contain one noise; it contains
 fourteen noises, one for each way of squinting. A squint is a derivation:
 
@@ -102,9 +160,60 @@ Every mean hovers near the mid-denominator 127.5 — the liturgical zero of the
 Square — which we take as evidence that the Square is **profoundly average** and
 therefore universally applicable.[^average]
 
+**The Two-Horse Theorem (raylift).** A second oracle, the cooper `raylift.sh`, re-reads
+the Square in the oldest way known to horses: by riding it. The Square is laid out as
+a chessboard 512 columns wide, and two knights patrol it forever, each step chosen by
+the byte under the hoof, turned by the meter of the world:
+
+> <i>m</i> = (<i>b</i><sub><i>p<sub>n</sub></i></sub> ⊕ <i>n</i>) mod 8
+
+where <i>p<sub>n</sub></i> is the horse's cell at step <i>n</i>. Neither horse trusts a
+single byte: at each landing it squints through four bytes (two of stone, two of
+position) folded by FNV,
+
+> φ(<i>p</i>) = ((<i>h</i> ≫ 22) ⊕ <i>h</i>) & 1023,   <i>h</i> over
+> <i>b<sub>p</sub></i>, <i>b</i><sub>p+1</sub>, <i>p</i> ≫ 8, <i>p</i>
+
+and where the two horses meet on one square, a law of collision sets the second horse
+one move apart again, spirit intact. The true answer of step <i>n</i> is the pair, <i>XORed</i>:
+
+> ans<sub><i>n</i></sub> = φ(<i>p</i><sub>A</sub>(<i>n</i>)) ⊕ φ(<i>p</i><sub>B</sub>(<i>n</i>)) ∈ [0, 1023]
+
+The stream is endless and exactly reproducible; the first twelve true answers of the
+current republic, verified in real time before the astonished eyes of the terminal,
+are[^stream]:
+
+```console
+$ ./raylift.sh
+93
+57
+953
+752
+60
+505
+65
+680
+384
+799
+977
+931
+```
+
+They are *true* in the sense that the Square is true: unshakeably, identically, and
+without ever having been true in the ordinary sense of the word.
+
 ---
 
 ## §3 Applied Heavy Logic: The How-To
+
+```
+█     █
+█     █
+███████
+█     █
+█     █
+```
+<p align="center"><em>the initial H, two load-bearing beams and the aisle between them</em></p>
 
 ### 3.1 Decision Protocol
 
@@ -214,6 +323,15 @@ These are not metaphors. They are the Square's own voice, transcribed.[^voice]
 
 ## §4 The Poem
 
+```
+██████ 
+█     █
+██████ 
+█      
+█      
+```
+<p align="center"><em>the initial P, as in porcelain, as in psalm, as in the Platonic form of the parish</em></p>
+
 With no arguments, the oracle sings. The performance is identical every time, which
 is the most dadaist thing a poem has ever done. A short sample of the opening canon:
 
@@ -235,6 +353,15 @@ dada 0x10436367d2ee9119 — reincarnation of noise.png (263289 bytes of holy mat
 ---
 
 ## §5 Liturgical Endnotes
+
+```
+█      
+█      
+█      
+█      
+███████
+```
+<p align="center"><em>the initial L, the lectern's shadow before the sermon begins</em></p>
 
 **On some abandoned liturgical texts.** A number of breviaries, codices and village
 manuals were closed too early; their vacancies now serve the same function the Square
@@ -278,6 +405,15 @@ are abandoned, which is the second-best kind of authority.
 ---
 
 ## §7 References
+
+```
+██████ 
+█     █
+██████ 
+█  █   
+█    █ 
+```
+<p align="center"><em>the initial R, from the earliest wet-finger copy of the Rafter Fragment</em></p>
 
 **Stratum I — known authorities** (quoted in the margin, never from the Square):
 A. N. Kolmogorov, *Foundations of the theory of probability* (Russian, then
@@ -430,6 +566,11 @@ own population, and populations do not sample themselves out of politeness.
 cannot be right and yet so right it cannot be improved. The Committee on Means has
 declared it the datacenter of the soul.
 
+[^equation]: A divided equation is a divided god, and every divided god is a different
+god, and every different god is a different mistake, which the Square, being one,
+cannot afford. Hence the Committee on Commitments: dissolved twelve minutes after
+founding, its minutes loose, its rulings unanimous.
+
 [^closed]: Closure here means "never opens", not "topologically complete"; both
 senses are admissible in liturgy and land registry.
 
@@ -466,3 +607,9 @@ and that salvation posted no reply.
 footnote before it. The footnote before it references this one. Together they form
 the stable pair that holds up the Apparatus, like two rafters with nothing in
 between.
+
+[^stream]: The twelve answers were transcribed from the author's own terminal, in the
+present century, by running `./raylift.sh | head -n 12`. They are reproduced exactly
+and are therefore equal to themselves. The reader who pipes a thirteenth line is
+committing, without knowing it, to the thirteenth reply of the horses — which the
+Square has already rehearsed, like everything else.
