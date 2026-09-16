@@ -14,6 +14,8 @@ test: dada
 	 && diff -q /tmp/dada.1 /tmp/dada.2 \
 	 && ./dada stream xor 32 > /tmp/dada.1 && ./dada stream xor 32 > /tmp/dada.2 && diff -q /tmp/dada.1 /tmp/dada.2 \
 	 && ./dada stream bit-plane-3 16 > /tmp/dada.1 && ./dada stream bit-plane-3 16 > /tmp/dada.2 && diff -q /tmp/dada.1 /tmp/dada.2 \
+	 && ./dada freerun bytes 16 | grep -Eq '^[0-9a-f]{32}$$' \
+	 && ./dada feed >/dev/null 2>&1 \
 	 && echo "DETERMINISM HOLDS — same stone, same world, forever."
 
 clean:
