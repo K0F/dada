@@ -49,6 +49,19 @@ static uint8_t *load_file(const char *path, size_t *out_len) {
     return buf;
 }
 
+static int realistic_bytes(uint8_t *p, size_t n) {
+    int fd = open("/dev/urandom", O_RDONLY);
+    if (fd < 0) return -1;
+    size_t got = 0;
+    while (got < n) {
+        ssize_t r = read(fd, p + got, n - got);
+        if (r <= 0) break;
+        got += (size_t)r;
+    }
+    close(fd);
+    return got == n ? 0 : -1;
+}
+
 enum { K_RAW, K_PLANE, K_CHANNEL, K_DELTA, K_XOR };
 #define N_INTERPS (1 + 8 + 3 + 1 + 1)
 
@@ -155,7 +168,7 @@ static void print_poem(const char *img, const uint8_t *raw, size_t n, uint64_t m
 static int is_command(const char *s) {
     static const char *cmds[] = {
         "help", "poem", "seed", "bytes", "pick", "coin", "roll", "stream", "interps",
-        "boil", "spice", "chore", NULL
+        "boil", "spice", "chore", "mealplan", "chores", NULL
     };
     for (int i = 0; cmds[i]; i++)
         if (strcmp(s, cmds[i]) == 0) return 1;
@@ -176,6 +189,8 @@ static void print_help(const char *prog) {
     printf("  boil              seconds to boil an egg (deterministic)\n");
     printf("  spice             which spice to add (deterministic)\n");
     printf("  chore <a> <b> ... who does the dishes\n");
+    printf("  chores <a> <b>... distribute all kitchen chores fairly\n");
+    printf("  mealplan          generate a full weekly meal plan\n");
     printf("  help              this\n");
 }
 
@@ -314,6 +329,42 @@ int main(int argc, char **argv) {
         size_t n_spices = sizeof(spices) / sizeof(spices[0]);
         egg(master ^ 0x591CE00000000000ULL);
         printf("%s\n", spices[hatch() % n_spices]);
+    } else if (strcmp(cmd, "chores") == 0) {
+        if (nargs < 1) {
+            fprintf(stderr, "dada: chores requires a list of household members.\n");
+            return 2;
+        }
+        static const char *tasks[] = {"Wash dishes", "Dry dishes", "Take out trash", "Wipe counters", "Sweep floor", "Clean fridge", "Cook dinner"};
+        size_t n_tasks = sizeof(tasks) / sizeof(tasks[0]);
+        
+        printf("The Weekly Chore Matrix:\n\n");
+        for (size_t t = 0; t < n_tasks; t++) {
+            uint64_t acc = master ^ fnv64((const uint8_t *)tasks[t], strlen(tasks[t]));
+            for (int i = 0; i < nargs; i++) {
+                acc ^= fnv64((const uint8_t *)args[i], strlen(args[i]));
+            }
+            egg(acc);
+            printf("%-15s -> %s\n", tasks[t], args[hatch() % (size_t)nargs]);
+        }
+    } else if (strcmp(cmd, "mealplan") == 0) {
+        static const char *days[] = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
+        static const char *breakfasts[] = {"Oatmeal with berries", "Toast with jam", "Scrambled eggs", "Pancakes", "Yogurt & granola", "Smoothie", "Leftover pizza", "Avocado toast"};
+        static const char *lunches[] = {"Turkey sandwich", "Caesar salad", "Tomato soup", "Tuna salad", "BLT", "Chicken wrap", "Veggie bowl", "Grilled cheese"};
+        static const char *dinners[] = {"Spaghetti", "Tacos", "Stir fry", "Roast chicken", "Baked salmon", "Lentil curry", "Steak & potatoes", "Mac and cheese"};
+        
+        size_t n_breakfasts = sizeof(breakfasts) / sizeof(breakfasts[0]);
+        size_t n_lunches = sizeof(lunches) / sizeof(lunches[0]);
+        size_t n_dinners = sizeof(dinners) / sizeof(dinners[0]);
+        
+        printf("The Sacred Meal Plan:\n\n");
+        for (int i = 0; i < 7; i++) {
+            egg(master ^ fnv64((const uint8_t *)days[i], strlen(days[i])));
+            printf("%-10s | B: %-20s | L: %-20s | D: %-20s\n", 
+                   days[i], 
+                   breakfasts[hatch() % n_breakfasts], 
+                   lunches[hatch() % n_lunches], 
+                   dinners[hatch() % n_dinners]);
+        }
     } else {
         print_poem(img, raw, n, master, only);
     }

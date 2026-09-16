@@ -175,12 +175,31 @@ $ dada roll
   $ dada spice
   the mathematical concept of heat (do not actually use chili)
   ```
-- **The Impartial Chore Matrix.** Ask the Square who will wash the dishes.
+- **The Impartial Chore Matrix.** Ask the Square who will wash the dishes today.
   ```console
   $ dada chore Alice Bob Charlie
   charlie must do the dishes, because the 14th interpretation demands a wet sacrifice.
   ```
-  *(Note: Charlie will always do the dishes in this timeline, until the candidates or the Square change. This is called fairness.)*
+- **The Weekly Meal Plan.** End decision fatigue. Let the Square dictate your entire week's meals deterministically.
+  ```console
+  $ dada mealplan
+  The Sacred Meal Plan:
+  
+  Monday     | B: Smoothie             | L: Veggie bowl          | D: Tacos               
+  Tuesday    | B: Oatmeal with berries | L: Grilled cheese       | D: Mac and cheese      
+  ...
+  ```
+- **Fair Household Distribution.** Distribute all household chores fairly and deterministically among roommates.
+  ```console
+  $ dada chores Alice Bob Charlie
+  The Weekly Chore Matrix:
+  
+  Wash dishes     -> bob
+  Dry dishes      -> charlie
+  Take out trash  -> alice
+  ...
+  ```
+  *(Note: Due to determinism, this chore matrix is fixed forever unless your roommates or the Square change. This is the ultimate form of fairness.)*
 
 ### 3.3 Home Economics of the Stone
 
