@@ -163,43 +163,18 @@ $ dada roll
 6. If the Scattered Husband argues the broth is undecidable, serve him the `xor`
    garnished with corollary 5 and declare the table closed.
 
-**Practical Daily Utilities.** The oracle has been updated to run your kitchen directly from the pixels of `noise.png`:
+**The Singular Directive.** The kitchen utilities have been stripped back to their rawest Dadaist essence. Do not ask for a meal plan. Do not ask for an egg. Ask to be fed.
 
-- **The Perfect Egg.** Do not guess. The Square knows exactly how long to boil your egg today.
-  ```console
-  $ dada boil
-  1804 seconds, over a flame fueled only by overdue utility bills.
-  ```
-- **The Inescapable Spice.** When the recipe calls for "seasoning", submit to the oracle.
-  ```console
-  $ dada spice
-  the mathematical concept of heat (do not actually use chili)
-  ```
-- **The Impartial Chore Matrix.** Ask the Square who will wash the dishes today.
-  ```console
-  $ dada chore Alice Bob Charlie
-  charlie must do the dishes, because the 14th interpretation demands a wet sacrifice.
-  ```
-- **The Weekly Meal Plan.** End decision fatigue. Let the Square dictate your entire week's meals deterministically.
-  ```console
-  $ dada mealplan
-  The Sacred Meal Plan:
-  
-  Monday     | B: Smoothie             | L: Veggie bowl          | D: Tacos               
-  Tuesday    | B: Oatmeal with berries | L: Grilled cheese       | D: Mac and cheese      
-  ...
-  ```
-- **Fair Household Distribution.** Distribute all household chores fairly and deterministically among roommates.
-  ```console
-  $ dada chores Alice Bob Charlie
-  The Weekly Chore Matrix:
-  
-  Wash dishes     -> bob
-  Dry dishes      -> charlie
-  Take out trash  -> alice
-  ...
-  ```
-  *(Note: Due to determinism, this chore matrix is fixed forever unless your roommates or the Square change. This is the ultimate form of fairness.)*
+```console
+$ dada feed
+THE REAL DADA KITCHEN
+
+1. Take silence and an egg.
+2. stare at them until the sun sets.
+3. Serve on the floor.
+
+Do this now. It is real.
+```
 
 ### 3.3 Home Economics of the Stone
 

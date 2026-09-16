@@ -168,7 +168,7 @@ static void print_poem(const char *img, const uint8_t *raw, size_t n, uint64_t m
 static int is_command(const char *s) {
     static const char *cmds[] = {
         "help", "poem", "seed", "bytes", "pick", "coin", "roll", "stream", "interps",
-        "boil", "spice", "chore", "mealplan", "chores", NULL
+        "feed", "freerun", NULL
     };
     for (int i = 0; cmds[i]; i++)
         if (strcmp(s, cmds[i]) == 0) return 1;
@@ -186,11 +186,10 @@ static void print_help(const char *prog) {
     printf("  roll              1..6\n");
     printf("  stream <name> <n> hex bytes from one interpretation\n");
     printf("  interps           list the fourteen interpretations\n");
-    printf("  boil              seconds to boil an egg (deterministic)\n");
-    printf("  spice             which spice to add (deterministic)\n");
-    printf("  chore <a> <b> ... who does the dishes\n");
-    printf("  chores <a> <b>... distribute all kitchen chores fairly\n");
-    printf("  mealplan          generate a full weekly meal plan\n");
+    printf("  feed              a real, dead simple, dadaist recipe\n");
+    printf("  freerun [sub]     /dev/urandom — the breaking of the contract\n");
+    printf("                      freerun [n | bytes <n>]  real hex bytes\n");
+    printf("                      freerun seed | coin | roll | pick <a> <b>...\n");
     printf("  help              this\n");
 }
 
@@ -275,95 +274,70 @@ int main(int argc, char **argv) {
         print_hex(buf, want);
         free(buf);
         free(work);
-    } else if (strcmp(cmd, "chore") == 0) {
-        if (nargs < 1) {
-            fprintf(stderr, "dada: chore requires candidates.\n");
-            return 2;
-        }
-        uint64_t acc = master ^ 0x0C404E0000000000ULL;
-        for (int i = 0; i < nargs; i++)
-            acc ^= fnv64((const uint8_t *)args[i], strlen(args[i]));
-        egg(acc);
+    } else if (strcmp(cmd, "feed") == 0) {
+        static const char *ingreds[] = {"water", "flour", "salt", "an egg", "a potato", "silence", "an onion", "oil", "a single bean"};
+        static const char *actions[] = {"boil", "burn", "stare at", "crush", "ignore", "whisper to", "hold"};
+        static const char *durations[] = {"for 300 seconds", "until it changes color", "until the sun sets", "for one breath", "forever"};
+        static const char *serving[] = {"on the floor", "to the nearest stranger", "in complete darkness", "without breaking eye contact", "out of a shoe"};
         
-        const char *loser = args[hatch() % (size_t)nargs];
-        static const char *reasons[] = {
-            "as dictated by the strict geometry of the Square",
-            "because their personal entropy is suspiciously low",
-            "as penance for disturbing the master seed",
-            "since they are the only one who truly understands the sponge",
-            "because the 14th interpretation demands a wet sacrifice",
-            "as a purely deterministic consequence of their birth",
-            "because the noise deemed their hands the most expendable"
-        };
-        size_t n_reasons = sizeof(reasons) / sizeof(reasons[0]);
-        printf("%s must do the dishes, %s.\n", loser, reasons[hatch() % n_reasons]);
-    } else if (strcmp(cmd, "boil") == 0) {
-        egg(master ^ 0xB011000000000000ULL);
-        unsigned seconds = hatch() % 10000;
-        static const char *methods[] = {
-            "on a rolling boil while maintaining direct eye contact with the pot",
-            "in water drawn entirely from a weeping willow",
-            "over a flame fueled only by overdue utility bills",
-            "using ambient room temperature, however long that takes",
-            "in a broth of your own regrets",
-            "while explaining the concept of zero to a dog",
-            "in a pan that has never known heat",
-            "under the cold, indifferent gaze of the moon"
-        };
-        size_t n_methods = sizeof(methods) / sizeof(methods[0]);
-        printf("%u seconds, %s.\n", seconds, methods[hatch() % n_methods]);
-    } else if (strcmp(cmd, "spice") == 0) {
-        static const char *spices[] = {
-            "a single grain of salt, cleanly bisected",
-            "the memory of garlic",
-            "cinnamon, inhaled deeply before looking at the pan",
-            "MSG, applied with the reverence of a sacrament",
-            "paprika, but only on alternating Tuesdays",
-            "nothing. The dish is already too loud.",
-            "a bay leaf that you must later deny ever seeing",
-            "sugar, applied with aggressive pessimism",
-            "thyme, which you have run out of",
-            "an uncracked peppercorn, hidden as a trap for the unwary",
-            "the mathematical concept of heat (do not actually use chili)"
-        };
-        size_t n_spices = sizeof(spices) / sizeof(spices[0]);
-        egg(master ^ 0x591CE00000000000ULL);
-        printf("%s\n", spices[hatch() % n_spices]);
-    } else if (strcmp(cmd, "chores") == 0) {
-        if (nargs < 1) {
-            fprintf(stderr, "dada: chores requires a list of household members.\n");
-            return 2;
-        }
-        static const char *tasks[] = {"Wash dishes", "Dry dishes", "Take out trash", "Wipe counters", "Sweep floor", "Clean fridge", "Cook dinner"};
-        size_t n_tasks = sizeof(tasks) / sizeof(tasks[0]);
-        
-        printf("The Weekly Chore Matrix:\n\n");
-        for (size_t t = 0; t < n_tasks; t++) {
-            uint64_t acc = master ^ fnv64((const uint8_t *)tasks[t], strlen(tasks[t]));
-            for (int i = 0; i < nargs; i++) {
-                acc ^= fnv64((const uint8_t *)args[i], strlen(args[i]));
+        egg(master ^ 0x6B17C4E1ULL);
+        printf("THE REAL DADA KITCHEN\n\n");
+        printf("1. Take %s and %s.\n", ingreds[hatch() % 9], ingreds[hatch() % 9]);
+        printf("2. %s them %s.\n", actions[hatch() % 7], durations[hatch() % 5]);
+        printf("3. Serve %s.\n", serving[hatch() % 5]);
+        printf("\nDo this now. It is real.\n");
+    } else if (strcmp(cmd, "freerun") == 0) {
+        if (nargs > 0 && strcmp(args[0], "pick") == 0) {
+            int count = nargs - 1;
+            if (count < 1) {
+                fprintf(stderr, "dada freerun: pick requires candidates.\n");
+                return 2;
             }
-            egg(acc);
-            printf("%-15s -> %s\n", tasks[t], args[hatch() % (size_t)nargs]);
-        }
-    } else if (strcmp(cmd, "mealplan") == 0) {
-        static const char *days[] = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
-        static const char *breakfasts[] = {"Oatmeal with berries", "Toast with jam", "Scrambled eggs", "Pancakes", "Yogurt & granola", "Smoothie", "Leftover pizza", "Avocado toast"};
-        static const char *lunches[] = {"Turkey sandwich", "Caesar salad", "Tomato soup", "Tuna salad", "BLT", "Chicken wrap", "Veggie bowl", "Grilled cheese"};
-        static const char *dinners[] = {"Spaghetti", "Tacos", "Stir fry", "Roast chicken", "Baked salmon", "Lentil curry", "Steak & potatoes", "Mac and cheese"};
-        
-        size_t n_breakfasts = sizeof(breakfasts) / sizeof(breakfasts[0]);
-        size_t n_lunches = sizeof(lunches) / sizeof(lunches[0]);
-        size_t n_dinners = sizeof(dinners) / sizeof(dinners[0]);
-        
-        printf("The Sacred Meal Plan:\n\n");
-        for (int i = 0; i < 7; i++) {
-            egg(master ^ fnv64((const uint8_t *)days[i], strlen(days[i])));
-            printf("%-10s | B: %-20s | L: %-20s | D: %-20s\n", 
-                   days[i], 
-                   breakfasts[hatch() % n_breakfasts], 
-                   lunches[hatch() % n_lunches], 
-                   dinners[hatch() % n_dinners]);
+            uint64_t r;
+            if (realistic_bytes((uint8_t *)&r, sizeof r) != 0) {
+                fprintf(stderr, "dada freerun: /dev/urandom is silent.\n");
+                return 1;
+            }
+            printf("%s\n", args[1 + (size_t)(r % (uint64_t)count)]);
+        } else if (nargs > 0 && strcmp(args[0], "seed") == 0) {
+            uint64_t r;
+            if (realistic_bytes((uint8_t *)&r, sizeof r) != 0) {
+                fprintf(stderr, "dada freerun: /dev/urandom is silent.\n");
+                return 1;
+            }
+            printf("0x%016llx %llu\n", (unsigned long long)r,
+                   (unsigned long long)r);
+        } else if (nargs > 0 && strcmp(args[0], "coin") == 0) {
+            uint8_t b;
+            if (realistic_bytes(&b, 1) != 0) {
+                fprintf(stderr, "dada freerun: /dev/urandom is silent.\n");
+                return 1;
+            }
+            printf("%u\n", (unsigned)(b & 1u));
+        } else if (nargs > 0 && strcmp(args[0], "roll") == 0) {
+            uint8_t b;
+            if (realistic_bytes(&b, 1) != 0) {
+                fprintf(stderr, "dada freerun: /dev/urandom is silent.\n");
+                return 1;
+            }
+            printf("%u\n", (unsigned)((b % 6u) + 1u));
+        } else {
+            size_t want = 16;
+            const char *a0 = nargs > 0 ? args[0] : NULL;
+            if (a0) {
+                if (strcmp(a0, "bytes") == 0)
+                    want = parse_n(nargs > 1 ? args[1] : NULL, 16);
+                else
+                    want = parse_n(a0, 16);
+            }
+            uint8_t *buf = xmalloc(want);
+            if (realistic_bytes(buf, want) != 0) {
+                fprintf(stderr, "dada freerun: /dev/urandom is silent.\n");
+                free(buf);
+                return 1;
+            }
+            print_hex(buf, want);
+            free(buf);
         }
     } else {
         print_poem(img, raw, n, master, only);
