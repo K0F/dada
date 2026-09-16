@@ -152,7 +152,8 @@ static void print_poem(const char *img, const uint8_t *raw, size_t n, uint64_t m
 
 static int is_command(const char *s) {
     static const char *cmds[] = {
-        "help", "poem", "seed", "bytes", "pick", "coin", "roll", "stream", "interps", NULL
+        "help", "poem", "seed", "bytes", "pick", "coin", "roll", "stream", "interps",
+        "boil", "spice", "chore", NULL
     };
     for (int i = 0; cmds[i]; i++)
         if (strcmp(s, cmds[i]) == 0) return 1;
@@ -170,6 +171,9 @@ static void print_help(const char *prog) {
     printf("  roll              1..6\n");
     printf("  stream <name> <n> hex bytes from one interpretation\n");
     printf("  interps           list the fourteen interpretations\n");
+    printf("  boil              seconds to boil an egg (deterministic)\n");
+    printf("  spice             which spice to add (deterministic)\n");
+    printf("  chore <a> <b> ... who does the dishes\n");
     printf("  help              this\n");
 }
 
@@ -254,6 +258,32 @@ int main(int argc, char **argv) {
         print_hex(buf, want);
         free(buf);
         free(work);
+    } else if (strcmp(cmd, "chore") == 0) {
+        if (nargs < 1) {
+            fprintf(stderr, "dada: chore requires candidates.\n");
+            return 2;
+        }
+        uint64_t acc = master ^ 0x0C404E0000000000ULL;
+        for (int i = 0; i < nargs; i++)
+            acc ^= fnv64((const uint8_t *)args[i], strlen(args[i]));
+        egg(acc);
+        printf("%s\n", args[hatch() % (size_t)nargs]);
+    } else if (strcmp(cmd, "boil") == 0) {
+        egg(master ^ 0xB011000000000000ULL);
+        unsigned seconds = 300 + (hatch() % 301);
+        printf("%u seconds\n", seconds);
+    } else if (strcmp(cmd, "spice") == 0) {
+        static const char *spices[] = {
+            "salt", "pepper", "paprika", "cumin", "coriander", "turmeric",
+            "cinnamon", "nutmeg", "cardamom", "cloves", "ginger", "garlic powder",
+            "onion powder", "oregano", "basil", "thyme", "rosemary", "dill",
+            "parsley", "cilantro", "mint", "bay leaf", "saffron", "star anise",
+            "fennel seeds", "mustard seeds", "fenugreek", "cayenne", "chili powder",
+            "msg", "nothing", "sugar", "soy sauce", "vinegar"
+        };
+        size_t n_spices = sizeof(spices) / sizeof(spices[0]);
+        egg(master ^ 0x591CE00000000000ULL);
+        printf("%s\n", spices[hatch() % n_spices]);
     } else {
         print_poem(img, raw, n, master, only);
     }

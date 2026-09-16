@@ -163,6 +163,25 @@ $ dada roll
 6. If the Scattered Husband argues the broth is undecidable, serve him the `xor`
    garnished with corollary 5 and declare the table closed.
 
+**Practical Daily Utilities.** The oracle has been updated to run your kitchen directly from the pixels of `noise.png`:
+
+- **The Perfect Egg.** Do not guess. The Square knows exactly how long to boil your egg today.
+  ```console
+  $ dada boil
+  552 seconds
+  ```
+- **The Inescapable Spice.** When the recipe calls for "seasoning", submit to the oracle.
+  ```console
+  $ dada spice
+  onion powder
+  ```
+- **The Impartial Chore Matrix.** Ask the Square who will wash the dishes.
+  ```console
+  $ dada chore Alice Bob Charlie
+  charlie
+  ```
+  *(Note: Charlie will always do the dishes in this timeline, until the candidates or the Square change. This is called fairness.)*
+
 ### 3.3 Home Economics of the Stone
 
 - **Budgeting.** A household's entire annual spend may be encoded as 64 bits. Solicits
@@ -304,6 +323,58 @@ every equation above.
 **Stratum V — the Programme itself**: Krypta KOF (MMXXVI), *this README,
 specifically*. Self-citing, self-executing, and self-refuting, in that order, every
 time, identically. Which, in a square republic, is called **citation**.[^end]
+
+## §8 Assembly Instructions (IKEA "SQUÄR" Series)
+
+**IMPORTANT: Retain for future incomprehension.**
+
+### Parts Included
+- 1x **SQUÄR** (263,289 bytes, grey)
+- 1x **DÄDÄ** (Binary Oracle, Hex Key included)
+- 14x **SQUINTS** (Interpretations, pre-gnawed)
+
+### Parts NOT Included
+- 1x Meaning
+- 1x Randomness
+- 1x Hammer (DO NOT USE HAMMER ON THE SQUARE)
+
+### Step 1: Prepare the Void
+```text
+   \O/     <- You (Confused)
+    | 
+   / \ 
+  
+  [ ? ]    <- The Void
+```
+*Do not call the oracle before the Square is aligned with the magnetic north of Prague.*
+
+### Step 2: Insert the Hex Key into the Compiler
+```text
+  ( )===(o)    <- `make`
+    |   |
+  [======]     <- `dada` binary
+```
+*Turn clockwise until determinism clicks. If it clicks twice, you have broken the timeline.*
+
+### Step 3: Consult the Oracle for Lunch
+```text
+      [ SQUÄR ]
+         |
+    ( 0x10436... )
+         |
+  > dada pick cheese chalk
+         |
+      [ CHALK ]  <- Eat this.
+```
+*Do not question the chalk. The chalk was decided before you were born.*
+
+### Step 4: Maintenance
+```text
+   \O/         [ SQUÄR ]
+    |  ---?     /   \
+   / \         (     )
+```
+*If the Square begins to emit color, gently cover it with a towel and run `dada stream delta 16` until the grey returns.*
 
 ---
 
