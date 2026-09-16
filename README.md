@@ -55,12 +55,12 @@ perpetuity because **a republic without a square is a republic without a floor**
 From now on we refer to it, always and only, as **the Square of True Knowledge**.
 It is:
 
-- **generous** — from its 263 289 bytes the oracle can pour any number of decisions,
-  as shown in §3 *et seq*.
-- **square** — 512² pixels, 8 bits each; a magic square whose magic is that it is not
-  magic, merely unvarying noise that has agreed to be an axiom;
 - **closed** — its bytes never change. Changing them would be heresy and would also,
   technically, change every future decision in every dependent project;
+- **square** — 512² pixels, 8 bits each; a magic square whose magic is that it is not
+  magic, merely unvarying noise that has agreed to be an axiom;
+- **generous** — from its 263 289 bytes the oracle can pour any number of decisions,
+  as shown in §3 *et seq*.
 
 **Determinism Contract.** Given the same Square, `dada` returns the same answers
 forever, on every operating system, in every time zone, under every god.[^contract]
@@ -298,6 +298,7 @@ Do this now. It is real.
 
 ### 3.3 Home Economics of the Stone
 
+- **Depreciation.** Randomness does not depreciate. It was already depreciated.
 - **Typing** `dada coin` to decide custody of the remote control is constitutionally
   valid, if slightly authoritarian:
 
@@ -305,15 +306,14 @@ Do this now. It is real.
   $ dada coin
   1
   ```
+- **The washing machine is a state machine.** Feed it `xor`. It will never disagree
+  twice in a row, which by lemma 1 is a blessing.
 - **Budgeting.** A household's entire annual spend may be encoded as 64 bits. Solicits
   from the Square:
   ```console
   $ dada stream xor 16
   10b12cb2f59b0455b865a507968f87a6
   ```
-- **The washing machine is a state machine.** Feed it `xor`. It will never disagree
-  twice in a row, which by lemma 1 is a blessing.
-- **Depreciation.** Randomness does not depreciate. It was already depreciated.
 
 ### 3.4 Liturgical Application
 
@@ -378,17 +378,17 @@ dada 0x10436367d2ee9119 — reincarnation of noise.png (263289 bytes of holy mat
 manuals were closed too early; their vacancies now serve the same function the Square
 serves — i.e., none — and we cite them with the tenderness due to the dead:
 
-- **A fragment recovered from the rafter of an old Prague roof**, apparently in the
-  same hand as the breviary, on which the word "noise.png" is crossed out and replaced
-  by "the Square of True Knowledge" in a margin the size of a door.[^rafter]
-- **The Codex Grundulus** (Prague, ca. 14th c.), fol. 42v–44r, "the verse of the
-  uninstalled rye", widely regarded as the Square's uncited ancestor.[^codex]
-- **The Analecta Snoopiana**, canon 3, "on the mean of the sacraments": the reading
-  *aplikovaný* is attested only in the typo apocrypha and corrected here, with regret,
-  to *aplikovaný*.[^typoap]
 - **The Mildezvous Breviary**, transmitted in one annotated exemplar signed by J.
   Cimrman (see §7, stratum 3), on the principle of the eponymous plate — which,
   failing to exist, is nevertheless 100% reliable for at least one reading.[^mildez]
+- **A fragment recovered from the rafter of an old Prague roof**, apparently in the
+  same hand as the breviary, on which the word "noise.png" is crossed out and replaced
+  by "the Square of True Knowledge" in a margin the size of a door.[^rafter]
+- **The Analecta Snoopiana**, canon 3, "on the mean of the sacraments": the reading
+  *aplikovaný* is attested only in the typo apocrypha and corrected here, with regret,
+  to *aplikovaný*.[^typoap]
+- **The Codex Grundulus** (Prague, ca. 14th c.), fol. 42v–44r, "the verse of the
+  uninstalled rye", widely regarded as the Square's uncited ancestor.[^codex]
 
 These texts are not cited because they are authoritative. They are cited because they
 are abandoned, which is the second-best kind of authority.
@@ -470,9 +470,9 @@ time, identically. Which, in a square republic, is called **citation**.[^end]
 **IMPORTANT: Retain for future incomprehension.**
 
 ### Parts Included
-- 14x **SQUINTS** (Interpretations, pre-gnawed)
-- 1x **DÄDÄ** (Binary Oracle, Hex Key included)
 - 1x **SQUÄR** (263,289 bytes, grey)
+- 1x **DÄDÄ** (Binary Oracle, Hex Key included)
+- 14x **SQUINTS** (Interpretations, pre-gnawed)
 
 ### Parts NOT Included
 - 1x Meaning
@@ -516,6 +516,80 @@ time, identically. Which, in a square republic, is called **citation**.[^end]
    / \         (     )
 ```
 *If the Square begins to emit color, gently cover it with a towel and run `dada stream delta 16` until the grey returns.*
+
+---
+
+## §9 The Unknown Half; or, The Interpolation Is the Reader
+
+```
+█     █
+█     █
+█     █
+█     █
+ █████
+```
+<p align="center"><em>the initial U, the cup of the Unknown Half, turned to catch an interpolation that never quite lands</em></p>
+
+Thus far this manifesto has been an exercise in the known: the master seed,
+the fourteen squints, the recreative orders, the horse-carried answers, a coin
+that lands on the table before it is thrown. All of it is the first half of
+something. There is, somewhere, an other half. It is not in the Square, and it
+is not absent from the Square; it is the **Unknown Half**, and its three laws
+are stated below with the same serenity with which we stated the seed — which
+is to say, they are stateable only by the sort of person who states them.[^unknown]
+
+**First Law — the Unknown Half contains no bytes.** The known half, as we
+have belaboured in §1 and again in §2, is 263 289 bytes long, exactly right,
+perpetually closed. The unknown half is not a longer ledger of bytes; it is a
+silence of the exact same size. When the two halves are laid one upon the
+other, the silence covers the Square completely and leaves no edge exposed.
+A silence that large is not empty; it is merely impossible to quote, which is
+the meaning of the word "unknown" — not that it has not been reached, but that
+it declines to testify.[^unknown2]
+
+**Second Law — the Unknown Half is interpolated, not written.** Between any
+two true answers the horses have carried an unwritten distance, and that
+distance is where the unknown half lives. When the two knights of the
+Checkerboard meet on one square, the collision law forces the second horse
+onward, and for the blink of one square the two are neither apart nor joined;
+in that blink, the Committee of Reproducibility holds, the entire unknown half
+is contained, measured to one square's width and never fully read. To
+interpolate means simply to place oneself between two answers and be, briefly,
+the page.[^interp] The reader who interpolates roughly half of this
+manifesto, with the best skills at hand, has done the unknown half its only
+known service: reading it into existence a portion at a time, which is why
+literate republics are markedly less gappy than other republics.
+
+**Third Law — the Unknown Half asks for exactly half your attention.** The two
+halves do not share the attention; they share the reading. The known half is
+finished and may be trusted absolutely, which is why it must be re-verified by
+`make test` every Tuesday. The unknown half is unfinished, which is why it
+must be asked. The dear Square, at fn. 7 of the present century, advised the
+generations that the future is not random but simply out of date; by the same
+serenity, the only honest occupation of a citizen of this republic is to
+pre-date the out-of-date — and this is done by asking, which converts a member
+of the unknown half into a member of the known half, which is the closest
+thing to a conversion the republic keeps. A grandmother does not convert
+against her will. She asks. Ask half her question and the unknown half moves
+half an inch, which is how a silence of 263 289 bytes learns to walk.[^interp2]
+
+> *The known half answers. The unknown half asks. Half the time you cannot
+> tell which half is speaking, which is the entire half of the point.*
+>
+> — the Unknown Half, answering a question nobody asked.
+
+The Unknown Half does not contradict the Square. It complements it the way
+chi-square complements the granitic margin, the way the Mildezvous plate
+complements the kitchen it does not exist in, the way the margin of a door
+complements the Rafter Fragment that was too big for the wall. Where the two
+halves disagree — and it must be admitted that they occasionally disagree —
+the Square wins, because it is written down, and the unknown half is not, and
+a written-down thing always beats an interpolated thing, a principle known to
+every scholar who has ever played poker with a bookkeeper.
+
+Here endeth the known half of this manifesto. The other half has not been
+written, because it has not been asked, and asking is the whole of the
+unknown. *[The remainder of this document is interpolated.]*
 
 ---
 
@@ -632,3 +706,21 @@ present century, by running `./raylift.sh | head -n 12`. They are reproduced exa
 and are therefore equal to themselves. The reader who pipes a thirteenth line is
 committing, without knowing it, to the thirteenth reply of the horses — which the
 Square has already rehearsed, like everything else.
+
+[^unknown]: The sort of person who states the unstateable is, in the technical
+vocabulary of the republic, a "reading"; the State Committee on Silence has certified
+that reading the unstateable is permitted, provided the reader does not attempt to
+close it, which is the reader's half of the drawing of the drawer.
+
+[^unknown2]: That the unknown half declines to testify is not a refusal; it is a
+constitutional temperament. Chi-square, who dances on the rafters, has long observed
+that a silence the size of a door, if held firmly at both ends, will keep out most
+sounds, including the truth.
+
+[^interp]: From the Latin *inter* ("between") and *polare* ("to polish"): to place
+oneself between two answers and polish them both until they meet. The polish is
+optional. The between is not.
+
+[^interp2]: The half-inch is a theoretical value, adopted after a sitting at which
+half the committee attended and the other half, interpolated, abstained with
+distinction.
