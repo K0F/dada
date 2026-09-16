@@ -168,17 +168,17 @@ $ dada roll
 - **The Perfect Egg.** Do not guess. The Square knows exactly how long to boil your egg today.
   ```console
   $ dada boil
-  552 seconds
+  1804 seconds, over a flame fueled only by overdue utility bills.
   ```
 - **The Inescapable Spice.** When the recipe calls for "seasoning", submit to the oracle.
   ```console
   $ dada spice
-  onion powder
+  the mathematical concept of heat (do not actually use chili)
   ```
 - **The Impartial Chore Matrix.** Ask the Square who will wash the dishes.
   ```console
   $ dada chore Alice Bob Charlie
-  charlie
+  charlie must do the dishes, because the 14th interpretation demands a wet sacrifice.
   ```
   *(Note: Charlie will always do the dishes in this timeline, until the candidates or the Square change. This is called fairness.)*
 

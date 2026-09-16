@@ -3,6 +3,8 @@
 #include <stdint.h>
 #include <stddef.h>
 #include <string.h>
+#include <fcntl.h>
+#include <unistd.h>
 
 #define DEFAULT_IMAGE "noise.png"
 #define MAX_BYTES (1u << 20)
@@ -267,19 +269,47 @@ int main(int argc, char **argv) {
         for (int i = 0; i < nargs; i++)
             acc ^= fnv64((const uint8_t *)args[i], strlen(args[i]));
         egg(acc);
-        printf("%s\n", args[hatch() % (size_t)nargs]);
+        
+        const char *loser = args[hatch() % (size_t)nargs];
+        static const char *reasons[] = {
+            "as dictated by the strict geometry of the Square",
+            "because their personal entropy is suspiciously low",
+            "as penance for disturbing the master seed",
+            "since they are the only one who truly understands the sponge",
+            "because the 14th interpretation demands a wet sacrifice",
+            "as a purely deterministic consequence of their birth",
+            "because the noise deemed their hands the most expendable"
+        };
+        size_t n_reasons = sizeof(reasons) / sizeof(reasons[0]);
+        printf("%s must do the dishes, %s.\n", loser, reasons[hatch() % n_reasons]);
     } else if (strcmp(cmd, "boil") == 0) {
         egg(master ^ 0xB011000000000000ULL);
-        unsigned seconds = 300 + (hatch() % 301);
-        printf("%u seconds\n", seconds);
+        unsigned seconds = hatch() % 10000;
+        static const char *methods[] = {
+            "on a rolling boil while maintaining direct eye contact with the pot",
+            "in water drawn entirely from a weeping willow",
+            "over a flame fueled only by overdue utility bills",
+            "using ambient room temperature, however long that takes",
+            "in a broth of your own regrets",
+            "while explaining the concept of zero to a dog",
+            "in a pan that has never known heat",
+            "under the cold, indifferent gaze of the moon"
+        };
+        size_t n_methods = sizeof(methods) / sizeof(methods[0]);
+        printf("%u seconds, %s.\n", seconds, methods[hatch() % n_methods]);
     } else if (strcmp(cmd, "spice") == 0) {
         static const char *spices[] = {
-            "salt", "pepper", "paprika", "cumin", "coriander", "turmeric",
-            "cinnamon", "nutmeg", "cardamom", "cloves", "ginger", "garlic powder",
-            "onion powder", "oregano", "basil", "thyme", "rosemary", "dill",
-            "parsley", "cilantro", "mint", "bay leaf", "saffron", "star anise",
-            "fennel seeds", "mustard seeds", "fenugreek", "cayenne", "chili powder",
-            "msg", "nothing", "sugar", "soy sauce", "vinegar"
+            "a single grain of salt, cleanly bisected",
+            "the memory of garlic",
+            "cinnamon, inhaled deeply before looking at the pan",
+            "MSG, applied with the reverence of a sacrament",
+            "paprika, but only on alternating Tuesdays",
+            "nothing. The dish is already too loud.",
+            "a bay leaf that you must later deny ever seeing",
+            "sugar, applied with aggressive pessimism",
+            "thyme, which you have run out of",
+            "an uncracked peppercorn, hidden as a trap for the unwary",
+            "the mathematical concept of heat (do not actually use chili)"
         };
         size_t n_spices = sizeof(spices) / sizeof(spices[0]);
         egg(master ^ 0x591CE00000000000ULL);
