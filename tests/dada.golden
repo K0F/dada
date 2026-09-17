@@ -1,0 +1,57 @@
+0x10436367d2ee9119 1171889625618092313
+6da7311b83b03fb489c88d2552ae44db
+bc837b76eeb164ed
+beta
+1
+0
+1
+5
+10b12cb2f59b0455b865a507968f87a643e4b05e7cbd7dcc9c3eec2367639a44
+dc53865294be3af5130da9d0ccf7ab47
+raw
+bit-plane-0
+bit-plane-1
+bit-plane-2
+bit-plane-3
+bit-plane-4
+bit-plane-5
+bit-plane-6
+bit-plane-7
+rgb-channel-0
+rgb-channel-1
+rgb-channel-2
+delta
+xor
+137
+196
+THE REAL DADA KITCHEN
+
+1. Take water and an onion.
+2. burn them until the sun sets.
+3. Serve out of a shoe.
+
+Do this now. It is real.
+dada — deterministic oracle, philosopher's stone edition
+usage: ./dada [--img stone] [--poem] [command] [args...]
+
+  (no command)      the poem
+  seed              master seed (hex decimal)
+  bytes <n> [s...] n hex bytes from the stone; seeds move the stream
+  pick <a> <b> ...  one deterministic choice
+  coin [s...]       0 or 1; seeds move it along
+  roll [s...]       1..6; seeds move it along
+  stream <name> <n> hex bytes from one interpretation
+  interps           list the fourteen interpretations
+  cell <x> <y>      one raw byte 0..255 at board x,y (wraps W x H)
+  feed              a real, dead simple, dadaist recipe
+  freerun [sub]     /dev/urandom — the breaking of the contract
+                      freerun [n | bytes <n>]  real hex bytes
+                      freerun seed | coin | roll | pick <a> <b>...
+  help              this
+
+Noise.
+
+The scattered register knocked the last coherent thought out of noise.png.
+The kernel bit into lime mortar. The sampler does not sample; the sampler scours the bottom.
+The roof is a script. The script is a ridge tile.
+No locks. No bus. Only clean, uninstalled grey dust settling toward zero.

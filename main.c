@@ -8,6 +8,7 @@
 
 #define DEFAULT_IMAGE "noise.png"
 #define MAX_BYTES (1u << 20)
+#define W 512
 
 static uint64_t fnv64(const uint8_t *p, size_t n) {
     uint64_t h = 0xcbf29ce484222325ULL;
@@ -136,6 +137,12 @@ static void egg(uint64_t key) { geist = key; }
 static uint64_t hatch(void) { return splitmix64(&geist); }
 static uint8_t hatch8(void) { return (uint8_t)(hatch() >> 56); }
 
+static uint64_t season(uint64_t base, const char **args, int nargs) {
+    for (int i = 0; i < nargs; i++)
+        base ^= fnv64((const uint8_t *)args[i], strlen(args[i]));
+    return base;
+}
+
 static void print_hex(const uint8_t *p, size_t n) {
     for (size_t i = 0; i < n; i++) printf("%02x", p[i]);
     putchar('\n');
@@ -168,7 +175,7 @@ static void print_poem(const char *img, const uint8_t *raw, size_t n, uint64_t m
 static int is_command(const char *s) {
     static const char *cmds[] = {
         "help", "poem", "seed", "bytes", "pick", "coin", "roll", "stream", "interps",
-        "feed", "freerun", NULL
+        "cell", "feed", "freerun", NULL
     };
     for (int i = 0; cmds[i]; i++)
         if (strcmp(s, cmds[i]) == 0) return 1;
@@ -180,12 +187,13 @@ static void print_help(const char *prog) {
     printf("usage: %s [--img stone] [--poem] [command] [args...]\n\n", prog);
     printf("  (no command)      the poem\n");
     printf("  seed              master seed (hex decimal)\n");
-    printf("  bytes <n>         n hex bytes from the stone\n");
+    printf("  bytes <n> [s...] n hex bytes from the stone; seeds move the stream\n");
     printf("  pick <a> <b> ...  one deterministic choice\n");
-    printf("  coin              0 or 1\n");
-    printf("  roll              1..6\n");
+    printf("  coin [s...]       0 or 1; seeds move it along\n");
+    printf("  roll [s...]       1..6; seeds move it along\n");
     printf("  stream <name> <n> hex bytes from one interpretation\n");
     printf("  interps           list the fourteen interpretations\n");
+    printf("  cell <x> <y>      one raw byte 0..255 at board x,y (wraps W x H)\n");
     printf("  feed              a real, dead simple, dadaist recipe\n");
     printf("  freerun [sub]     /dev/urandom — the breaking of the contract\n");
     printf("                      freerun [n | bytes <n>]  real hex bytes\n");
@@ -231,20 +239,30 @@ int main(int argc, char **argv) {
     if (strcmp(cmd, "seed") == 0) {
         printf("0x%016llx %llu\n", (unsigned long long)master, (unsigned long long)master);
     } else if (strcmp(cmd, "coin") == 0) {
-        egg(master);
+        egg(season(master, args, nargs));
         printf("%u\n", (unsigned)(hatch8() & 1u));
     } else if (strcmp(cmd, "roll") == 0) {
-        egg(master ^ 0x0badc0dedeaf0d00ULL);
+        egg(season(master ^ 0x0badc0dedeaf0d00ULL, args, nargs));
         printf("%u\n", (unsigned)((hatch8() % 6u) + 1u));
     } else if (strcmp(cmd, "bytes") == 0) {
         size_t want = parse_n(nargs > 0 ? args[0] : NULL, 16);
-        egg(master);
+        egg(season(master, args + 1, nargs > 0 ? nargs - 1 : 0));
         uint8_t *buf = xmalloc(want);
         for (size_t i = 0; i < want; i++) buf[i] = hatch8();
         print_hex(buf, want);
         free(buf);
     } else if (strcmp(cmd, "interps") == 0) {
         for (int i = 0; i < N_INTERPS; i++) printf("%s\n", interps[i].name);
+    } else if (strcmp(cmd, "cell") == 0) {
+        if (nargs < 2) {
+            fprintf(stderr, "dada: cell requires x and y.\n");
+            return 2;
+        }
+        unsigned long long x = strtoull(args[0], NULL, 10);
+        unsigned long long y = strtoull(args[1], NULL, 10);
+        unsigned long long h = (n + W - 1) / W;
+        size_t idx = (size_t)((y % h) * W + (x % W)) % n;
+        printf("%u\n", (unsigned)raw[idx]);
     } else if (strcmp(cmd, "pick") == 0) {
         if (nargs < 1) {
             fprintf(stderr, "dada: pick requires candidates.\n");

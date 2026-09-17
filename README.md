@@ -22,7 +22,8 @@ Requires a C compiler. No other dependencies.
 
 ```console
 $ make            # cc -O2 -std=c11 -Wall -Wextra -o dada main.c
-$ make test       # determinism check, prints DETERMINISM HOLDS
+$ make test       # determinism smoke test, prints DETERMINISM HOLDS
+$ make check      # the full proof: semantics + immutability (45 assertions)
 $ make clean
 ```
 
@@ -33,6 +34,14 @@ prints:
 ```console
 DETERMINISM HOLDS — same stone, same world, forever.
 ```
+
+`make check` (`tests.sh`) goes deeper and is the one to trust before a release:
+it checks every command against ground truth it derives itself (for `cell`, the
+stone's own bytes via `od`, byte-for-byte), verifies the seeded commands really
+move and the unseeded ones stay frozen, double-runs the whole deterministic
+battery, and pins everything to the committed golden transcript
+(`tests/dada.golden`). Regenerate that transcript after an *intentional*
+behavior change with `make gold`.
 
 ## Usage
 
@@ -46,12 +55,13 @@ Commands:
 |---------------------|--------------------------------------------------------------|
 | *(no command)*      | the poem (identical every run)                               |
 | `seed`              | master seed, hex and decimal                                 |
-| `bytes <n>`         | `n` hex bytes from the seed stream                           |
+| `bytes <n> [s...]` | `n` hex bytes from the seed stream; seeds move the stream |
 | `pick <a> <b> ...`  | one deterministic choice from the candidates                 |
-| `coin`              | 0 or 1                                                       |
-| `roll`              | 1..6                                                         |
+| `coin [s...]`      | 0 or 1; add a seed to move it along                         |
+| `roll [s...]`      | 1..6; add a seed to move it along                           |
 | `stream <name> <n>` | `n` hex bytes from one of the fourteen interpretations       |
 | `interps`           | list the fourteen interpretations                            |
+| `cell <x> <y>`      | one raw byte 0..255 at board position, wrapping by W x H     |
 | `feed`              | print a fixed dadaist recipe                                 |
 | `freerun [sub]`     | answers from `/dev/urandom` instead of the stone (random)    |
 | `help`              | usage summary                                                |
@@ -67,6 +77,25 @@ The fourteen interpretations available to `stream`:
 raw  bit-plane-0 bit-plane-1 bit-plane-2 bit-plane-3 bit-plane-4
 bit-plane-5 bit-plane-6 bit-plane-7 rgb-channel-0 rgb-channel-1
 rgb-channel-2 delta xor
+```
+
+## Animated answers
+
+Unseeded `coin`, `roll` and `bytes` are *frozen*: for a given stone they return
+the same value forever (`coin` is `1` for noise.png — that is the determinism,
+not a bug). To move them, give them a seed; the seed is mixed into the master
+seed (the same way the candidates of `pick` are), so same seed, same answer,
+new seed, new answer:
+
+```console
+$ ./dada coin           # 1 — frozen
+$ ./dada coin 1 && ./dada coin 2   # 0, 1 — moving
+```
+
+That *is* the animation register. Sweep a grid, or bind a seed to the board:
+
+```console
+$ for x in $(seq 0 511); do ./dada coin "$x" "$((x * 7 % 515))"; done
 ```
 
 ## raylift.sh

@@ -18,7 +18,8 @@ and how to do it reproducibly, portably, and *safely*.
 
 ```console
 $ make            # cc -O2 -std=c11 -Wall -Wextra -o dada main.c
-$ make test       # proves determinism holds
+$ make test       # determinism smoke test
+$ make check      # full proof: semantics + immutability (tests.sh, 45 assertions)
 $ ./dada help
 ```
 
@@ -70,7 +71,24 @@ $ ./dada coin          # heads/tails as 0 or 1
 $ ./dada roll          # honest-ish six-sider
 1
 $ ./dada bytes 4       # hex material, pre-stamped
-6da7311b83b03fb4
+6da7311b
+```
+
+These are *frozen*: for a given stone the answer never changes — `coin` has been
+`1` since the stone was cut, and that is the determinism, not a bug. To move
+them — to animate — give a seed. The seed is mixed into the master seed just
+like the candidates of `pick`, so same seed, same answer, new seed, new answer:
+
+```console
+$ ./dada coin 1        # 0
+$ ./dada coin 2        # 1
+$ ./dada roll today    # 3   — any word or number seasons the throw
+```
+
+March a sweep to flip a coin across the whole board:
+
+```console
+$ for x in $(seq 0 511); do ./dada coin "$x" "$((x * 7 % 515))"; done
 ```
 
 Use them for: who sits where; who reads a poem aloud; whether today counts as
@@ -218,12 +236,13 @@ Diagnostics are short and dadaist but unfailingly to the point.
 ```console
 $ ./dada                          the poem (identical every time — a win)
 $ ./dada seed                     master seed
-$ ./dada bytes <n>                n hex bytes from the stone
+$ ./dada bytes <n> [s...]          n hex bytes from the stone (seeds move the stream)
 $ ./dada pick <a> <b> [<c> ...]   one deterministic choice
-$ ./dada coin                    0 or 1
-$ ./dada roll                    1..6
+$ ./dada coin [s...]              0 or 1 (seeds move it along)
+$ ./dada roll [s...]              1..6 (seeds move it along)
 $ ./dada stream <name> <n>       hex bytes from one of the fourteen squints
 $ ./dada interps                 list the fourteen squints
+$ ./dada cell <x> <y>            one raw byte 0..255 at board x,y (wraps W x H)
 $ ./dada feed                    a real dadaist recipe
 $ ./dada freerun [sub]           /dev/urandom — the honest exception
 ```
