@@ -32,8 +32,9 @@ THE REAL DADA KITCHEN
 
 Do this now. It is real.
 dada — deterministic oracle, philosopher's stone edition
-usage: ./dada [--img stone] [--poem] [command] [args...]
+usage: ./dada [--img stone] [--poem] [-h|--help] [command] [args...]
 
+  values accept both '--opt val' and '--opt=val' forms
   (no command)      the poem
   seed              master seed (hex decimal)
   bytes <n> [s...] n hex bytes from the stone; seeds move the stream

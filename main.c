@@ -184,7 +184,8 @@ static int is_command(const char *s) {
 
 static void print_help(const char *prog) {
     printf("dada — deterministic oracle, philosopher's stone edition\n");
-    printf("usage: %s [--img stone] [--poem] [command] [args...]\n\n", prog);
+    printf("usage: %s [--img stone] [--poem] [-h|--help] [command] [args...]\n\n", prog);
+    printf("  values accept both '--opt val' and '--opt=val' forms\n");
     printf("  (no command)      the poem\n");
     printf("  seed              master seed (hex decimal)\n");
     printf("  bytes <n> [s...] n hex bytes from the stone; seeds move the stream\n");
@@ -216,8 +217,10 @@ int main(int argc, char **argv) {
 
     for (; ai < argc; ai++) {
         const char *a = argv[ai];
+        if (strcmp(a, "-h") == 0 || strcmp(a, "--help") == 0) { cmd = "help"; ai++; break; }
         if (strcmp(a, "--poem") == 0) { only = 1; continue; }
         if (strcmp(a, "--img") == 0 && ai + 1 < argc) { img = argv[++ai]; continue; }
+        if (strncmp(a, "--img=", 6) == 0) { img = a + 6; continue; }
         if (is_command(a)) { cmd = a; ai++; break; }
         img = a;
     }
